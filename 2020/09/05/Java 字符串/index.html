@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="String类1. 数据转换valueOf(int&#x2F;char&#x2F;…)1234String str &#x3D; new String();str &#x3D; String.valueOf(24);char[] charArray &#x3D; &amp;#123;&amp;#x27;a&amp;#x27;,&amp;#x27;c&amp;#x27;,&amp;#x27;t&amp;#x27;,&amp;#x27;o&amp;#x27;,&amp;#x27;r&amp;#x27;&amp;#125;;str &#x3D; Strin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 字符串">
+<meta property="og:url" content="http://example.com/2020/09/05/Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
+<meta property="og:site_name" content="个人博客">
+<meta property="og:description" content="String类1. 数据转换valueOf(int&#x2F;char&#x2F;…)1234String str &#x3D; new String();str &#x3D; String.valueOf(24);char[] charArray &#x3D; &amp;#123;&amp;#x27;a&amp;#x27;,&amp;#x27;c&amp;#x27;,&amp;#x27;t&amp;#x27;,&amp;#x27;o&amp;#x27;,&amp;#x27;r&amp;#x27;&amp;#125;;str &#x3D; Strin">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-05T15:53:45.054Z">
+<meta property="article:modified_time" content="2020-09-05T17:00:16.506Z">
+<meta property="article:author" content="Actor">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/09/05/Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java 字符串 | 个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#String%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">String类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2valueOf-int-char-%E2%80%A6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数据转换valueOf(int&#x2F;char&#x2F;…)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">2. 字符串拼接  +</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6-length"><span class="nav-number">1.3.</span> <span class="nav-text">3. 字符串长度 length()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%9F%A5%E6%89%BE%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.4.</span> <span class="nav-text">4. 查找字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-charAt-int-index-%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 charAt(int index)方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-indexOf-%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 indexOf()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-lastIndexOf-%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 lastIndexOf()方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9B%BF%E6%8D%A2replace"><span class="nav-number">1.5.</span> <span class="nav-text">5. 字符串替换replace()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E5%8F%96substring"><span class="nav-number">1.6.</span> <span class="nav-text">6. 字符串截取substring()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%86%E5%89%B2split-String-regex-split-String-regex-int"><span class="nav-number">1.7.</span> <span class="nav-text">7. 字符串分割split(String regex)&#x2F;split(String regex,int)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A6%96%E5%B0%BE%E5%88%A4%E6%96%AD"><span class="nav-number">1.8.</span> <span class="nav-text">8. 字符串首尾判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A6%96%E5%B0%BE%E5%8E%BB%E7%A9%BA%E6%A0%BCtrim"><span class="nav-number">1.9.</span> <span class="nav-text">9. 字符串首尾去空格trim()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2toLowerCase-toUpperCase"><span class="nav-number">1.10.</span> <span class="nav-text">10. 字符串大小写转换toLowerCase()&#x2F;toUpperCase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="nav-number">1.11.</span> <span class="nav-text">11. 其他操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E5%AD%97%E7%AC%A6%E4%B8%B2-cantains-CharSequence-s"><span class="nav-number">1.11.1.</span> <span class="nav-text">11.1 判断是否包含字符串 cantains(CharSequence s)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-%E8%BD%AC%E6%8D%A2%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84-toCharArray"><span class="nav-number">1.11.2.</span> <span class="nav-text">11.2 转换字符数组 toCharArray()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StringBuilder%E7%B1%BB%E4%B8%8EStringBuffer%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">StringBuilder类与StringBuffer类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8C%BA%E5%88%AB"><span class="nav-number">2.1.</span> <span class="nav-text">1. 区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.2.</span> <span class="nav-text">2. 创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-append-object-%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">3. append(object)方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-insert-int-offset-object-%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">4. insert(int offset,object)方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-delete-int-start-int-end-%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">5. delete(int start,int end)方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-charAt-int-%E6%96%B9%E6%B3%95"><span class="nav-number">2.6.</span> <span class="nav-text">6. charAt(int)方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-replace-int-start-int-end-String-str-%E6%96%B9%E6%B3%95"><span class="nav-number">2.7.</span> <span class="nav-text">7. replace(int start,int end,String str)方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-reverse-%E6%96%B9%E6%B3%95"><span class="nav-number">2.8.</span> <span class="nav-text">8. reverse()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-toString-%E6%96%B9%E6%B3%95"><span class="nav-number">2.9.</span> <span class="nav-text">9. toString()方法</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Actor"
+      src="/img/blogphoto.jpg">
+  <p class="site-author-name" itemprop="name">Actor</p>
+  <div class="site-description" itemprop="description">随便写写</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/05/Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/blogphoto.jpg">
+      <meta itemprop="name" content="Actor">
+      <meta itemprop="description" content="随便写写">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="个人博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java 字符串
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-05 23:53:45" itemprop="dateCreated datePublished" datetime="2020-09-05T23:53:45+08:00">2020-09-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-06 01:00:16" itemprop="dateModified" datetime="2020-09-06T01:00:16+08:00">2020-09-06</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h1><h2 id="1-数据转换valueOf-int-char-…"><a href="#1-数据转换valueOf-int-char-…" class="headerlink" title="1. 数据转换valueOf(int/char/…)"></a>1. 数据转换valueOf(int/char/…)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="keyword">new</span> String();</span><br><span class="line">str = String.valueOf(<span class="number">24</span>);</span><br><span class="line"><span class="keyword">char</span>[] charArray = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;t&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;r&#x27;</span>&#125;;</span><br><span class="line">str = String.valueOf(charArray,offset:<span class="number">1</span>,count:<span class="number">3</span>);<span class="comment">//从数组下标offset开始取count个数据</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-字符串拼接"><a href="#2-字符串拼接" class="headerlink" title="2. 字符串拼接  +"></a>2. 字符串拼接  +</h2><h2 id="3-字符串长度-length"><a href="#3-字符串长度-length" class="headerlink" title="3. 字符串长度 length()"></a>3. 字符串长度 length()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> len = str.length();</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-查找字符串"><a href="#4-查找字符串" class="headerlink" title="4. 查找字符串"></a>4. 查找字符串</h2><h3 id="4-1-charAt-int-index-方法"><a href="#4-1-charAt-int-index-方法" class="headerlink" title="4.1 charAt(int index)方法"></a>4.1 charAt(int index)方法</h3><p>获取字符串中指定索引位置的字符</p>
+<h3 id="4-2-indexOf-方法"><a href="#4-2-indexOf-方法" class="headerlink" title="4.2 indexOf()方法"></a>4.2 indexOf()方法</h3><ul>
+<li>indexOf(int ch):返回入参字符在字符串中第一次出现的索引位置</li>
+<li>indexOf(int ch,int formIndex):从formIndex开始搜索，返回入参字符在字符串中第一次出现的索引位置</li>
+<li>indexOf(String str):返回入参字符串在字符串中第一次出现的索引位置</li>
+<li>indexOf(String str,int formIndex)：从formIndex开始搜索，返回入参字符串在字符串中第一次出现的索引位置</li>
+</ul>
+<h3 id="4-3-lastIndexOf-方法"><a href="#4-3-lastIndexOf-方法" class="headerlink" title="4.3 lastIndexOf()方法"></a>4.3 lastIndexOf()方法</h3><p>同indexOf()类似，返回最后一次出现的索引位置，搜索则为反向搜索。</p>
+<h2 id="5-字符串替换replace"><a href="#5-字符串替换replace" class="headerlink" title="5. 字符串替换replace()"></a>5. 字符串替换replace()</h2><h2 id="6-字符串截取substring"><a href="#6-字符串截取substring" class="headerlink" title="6. 字符串截取substring()"></a>6. 字符串截取substring()</h2><ul>
+<li>substring(int beginIndex)：从入参索引位置开始截取，直到String结尾</li>
+<li>substring(int beginIndex，int endIndex):从beginIndex到endIndex-1</li>
+</ul>
+<h2 id="7-字符串分割split-String-regex-split-String-regex-int"><a href="#7-字符串分割split-String-regex-split-String-regex-int" class="headerlink" title="7. 字符串分割split(String regex)/split(String regex,int)"></a>7. 字符串分割split(String regex)/split(String regex,int)</h2><h2 id="8-字符串首尾判断"><a href="#8-字符串首尾判断" class="headerlink" title="8. 字符串首尾判断"></a>8. 字符串首尾判断</h2><ul>
+<li>startsWith(String prefix):判断是否以prefix开始</li>
+<li>startsWith(String prefix,int offset):判断从offset开始是否以prefix开始</li>
+<li>endsWith(String suffix):判断是否以suffix结尾</li>
+</ul>
+<h2 id="9-字符串首尾去空格trim"><a href="#9-字符串首尾去空格trim" class="headerlink" title="9. 字符串首尾去空格trim()"></a>9. 字符串首尾去空格trim()</h2><h2 id="10-字符串大小写转换toLowerCase-toUpperCase"><a href="#10-字符串大小写转换toLowerCase-toUpperCase" class="headerlink" title="10. 字符串大小写转换toLowerCase()/toUpperCase"></a>10. 字符串大小写转换toLowerCase()/toUpperCase</h2><h2 id="11-其他操作"><a href="#11-其他操作" class="headerlink" title="11. 其他操作"></a>11. 其他操作</h2><h3 id="11-1-判断是否包含字符串-cantains-CharSequence-s"><a href="#11-1-判断是否包含字符串-cantains-CharSequence-s" class="headerlink" title="11.1 判断是否包含字符串 cantains(CharSequence s)"></a>11.1 判断是否包含字符串 cantains(CharSequence s)</h3><h3 id="11-2-转换字符数组-toCharArray"><a href="#11-2-转换字符数组-toCharArray" class="headerlink" title="11.2 转换字符数组 toCharArray()"></a>11.2 转换字符数组 toCharArray()</h3><h1 id="StringBuilder类与StringBuffer类"><a href="#StringBuilder类与StringBuffer类" class="headerlink" title="StringBuilder类与StringBuffer类"></a>StringBuilder类与StringBuffer类</h1><h2 id="1-区别"><a href="#1-区别" class="headerlink" title="1. 区别"></a>1. 区别</h2><p>StringBuilder是非线程安全的，StringBuffer是线程安全的，但是StringBuilder比StringBuffer效率更高。</p>
+<h2 id="2-创建对象"><a href="#2-创建对象" class="headerlink" title="2. 创建对象"></a>2. 创建对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder stringBuiler = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">StringBuffer stringBuffer = <span class="keyword">new</span> StringBuffer();</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-append-object-方法"><a href="#3-append-object-方法" class="headerlink" title="3. append(object)方法"></a>3. append(object)方法</h2><p>将指定内容转换成字符串，添加到StringBuilder/StringBuffer对象末端。</p>
+<h2 id="4-insert-int-offset-object-方法"><a href="#4-insert-int-offset-object-方法" class="headerlink" title="4. insert(int offset,object)方法"></a>4. insert(int offset,object)方法</h2><p>在索引offset处插入指定内容。</p>
+<h2 id="5-delete-int-start-int-end-方法"><a href="#5-delete-int-start-int-end-方法" class="headerlink" title="5. delete(int start,int end)方法"></a>5. delete(int start,int end)方法</h2><p>删除start到end-1的字符内容。</p>
+<h2 id="6-charAt-int-方法"><a href="#6-charAt-int-方法" class="headerlink" title="6. charAt(int)方法"></a>6. charAt(int)方法</h2><p>返回指定索引位置的字符。</p>
+<h2 id="7-replace-int-start-int-end-String-str-方法"><a href="#7-replace-int-start-int-end-String-str-方法" class="headerlink" title="7. replace(int start,int end,String str)方法"></a>7. replace(int start,int end,String str)方法</h2><h2 id="8-reverse-方法"><a href="#8-reverse-方法" class="headerlink" title="8. reverse()方法"></a>8. reverse()方法</h2><p>将字符串序列反转，创造一个新的StringBuilder/StringBuffer对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder stringBuiler = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">StringBuffer stringBuffer = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">stringBuiler.reverse();</span><br><span class="line">stringBuffer.reverse();</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-toString-方法"><a href="#9-toString-方法" class="headerlink" title="9. toString()方法"></a>9. toString()方法</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/05/Scanner%E7%B1%BB/" rel="prev" title="Scanner类">
+                  <i class="fa fa-chevron-left"></i> Scanner类
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Actor</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
