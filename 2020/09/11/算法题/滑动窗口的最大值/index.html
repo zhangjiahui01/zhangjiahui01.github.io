@@ -22,20 +22,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="问题描述题目链接 123假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？注意：给定 n 是一个正整数。  思路（动态规划）我们用 f(x）表示爬到第x级台阶的方案数，考虑最后一步可能跨了一级台阶，也可能跨了两级台阶，所以我们可以列出如下式子： 1f(x)&#x3D;f(x−1)+f(x−2)  它意味着爬到第x 级台阶的方案数是爬">
+  <meta name="description" content="问题描述（Leetcode：剑指offer 59）给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 输入: nums &#x3D; [1,3,-1,-3,5,3,6,7], 和 k &#x3D; 3输出: [3,3,5,5,6,7]解释:    滑动窗口的位置                最大值 [1  3  -1] -3  5  3  6  7           3 1 [3  -1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="楼梯问题">
-<meta property="og:url" content="http://example.com/2020/09/06/%E7%AE%97%E6%B3%95%E9%A2%98/%E6%A5%BC%E6%A2%AF%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="滑动窗口的最大值">
+<meta property="og:url" content="http://example.com/2020/09/11/%E7%AE%97%E6%B3%95%E9%A2%98/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="问题描述题目链接 123假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？注意：给定 n 是一个正整数。  思路（动态规划）我们用 f(x）表示爬到第x级台阶的方案数，考虑最后一步可能跨了一级台阶，也可能跨了两级台阶，所以我们可以列出如下式子： 1f(x)&#x3D;f(x−1)+f(x−2)  它意味着爬到第x 级台阶的方案数是爬">
+<meta property="og:description" content="问题描述（Leetcode：剑指offer 59）给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 输入: nums &#x3D; [1,3,-1,-3,5,3,6,7], 和 k &#x3D; 3输出: [3,3,5,5,6,7]解释:    滑动窗口的位置                最大值 [1  3  -1] -3  5  3  6  7           3 1 [3  -1">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-06T01:39:29.023Z">
-<meta property="article:modified_time" content="2020-09-08T00:31:14.306Z">
+<meta property="og:image" content="http://example.com/.com//剑指offer%2059.png">
+<meta property="article:published_time" content="2020-09-11T03:06:21.932Z">
+<meta property="article:modified_time" content="2020-09-11T08:12:53.176Z">
 <meta property="article:author" content="Actor">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/.com//剑指offer%2059.png">
 
 
-<link rel="canonical" href="http://example.com/2020/09/06/%E7%AE%97%E6%B3%95%E9%A2%98/%E6%A5%BC%E6%A2%AF%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://example.com/2020/09/11/%E7%AE%97%E6%B3%95%E9%A2%98/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/">
 
 
 <script data-pjax class="page-configurations">
@@ -48,7 +50,7 @@
   };
 </script>
 
-  <title>楼梯问题 | 个人博客</title>
+  <title>滑动窗口的最大值 | 个人博客</title>
   
 
 
@@ -148,7 +150,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%88%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">思路（动态规划）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81-java"><span class="nav-number">3.</span> <span class="nav-text">源码(java)</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%88Leetcode%EF%BC%9A%E5%89%91%E6%8C%87offer-59%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">问题描述（Leetcode：剑指offer 59）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E6%BA%90%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">Java源码</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -200,7 +202,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/06/%E7%AE%97%E6%B3%95%E9%A2%98/%E6%A5%BC%E6%A2%AF%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/11/%E7%AE%97%E6%B3%95%E9%A2%98/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/blogphoto.jpg">
@@ -216,7 +218,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          楼梯问题
+          滑动窗口的最大值
         </h1>
 
         <div class="post-meta-container">
@@ -226,16 +228,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2020-09-06 09:39:29" itemprop="dateCreated datePublished" datetime="2020-09-06T09:39:29+08:00">2020-09-06</time>
+      <time title="创建时间：2020-09-11 11:06:21 / 修改时间：16:12:53" itemprop="dateCreated datePublished" datetime="2020-09-11T11:06:21+08:00">2020-09-11</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-08 08:31:14" itemprop="dateModified" datetime="2020-09-08T08:31:14+08:00">2020-09-08</time>
-      </span>
 
   
 </div>
@@ -247,19 +243,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs">题目链接</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</span><br><span class="line">每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</span><br><span class="line">注意：给定 n 是一个正整数。</span><br></pre></td></tr></table></figure>
+        <h3 id="问题描述（Leetcode：剑指offer-59）"><a href="#问题描述（Leetcode：剑指offer-59）" class="headerlink" title="问题描述（Leetcode：剑指offer 59）"></a>问题描述（Leetcode：剑指offer 59）</h3><p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
+<p>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3<br>输出: [3,3,5,5,6,7]<br>解释: </p>
+<p>  滑动窗口的位置                最大值</p>
+<p>[1  3  -1] -3  5  3  6  7           3<br> 1 [3  -1  -3] 5  3  6  7           3<br> 1  3 [-1  -3  5] 3  6  7           5<br> 1  3  -1 [-3  5  3] 6  7           5<br> 1  3  -1  -3 [5  3  6] 7           6<br> 1  3  -1  -3  5 [3  6  7]          7</p>
+<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><img src="/.com//剑指offer 59.png" style="zoom:48%;">
 
-<h3 id="思路（动态规划）"><a href="#思路（动态规划）" class="headerlink" title="思路（动态规划）"></a>思路（动态规划）</h3><p>我们用 f(x）表示爬到第x级台阶的方案数，考虑最后一步可能跨了一级台阶，也可能跨了两级台阶，所以我们可以列出如下式子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(x)&#x3D;f(x−1)+f(x−2)</span><br></pre></td></tr></table></figure>
-
-<p>它意味着爬到第x 级台阶的方案数是爬到第x-1级台阶的方案数和爬到第x-2级台阶的方案数的和。很好理解，因为每次只能爬1级或2级，所以 f(x) 只能从 f(x−1) 和 f(x−2) 转移过来，而这里要统计方案总数，我们就需要对这两项的贡献求和。</p>
-<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>我们从第0级到第0级有1种方案，即f(0)=1;</p>
-<p>我们从第0级到第1级有1种方案，即f(1)=1;</p>
-<p>当n&gt;1时，f(n)=f(n-1)+f(n-2)。</p>
-<h3 id="源码-java"><a href="#源码-java" class="headerlink" title="源码(java)"></a>源码(java)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] f=<span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            f[i]=f[i-<span class="number">1</span>]+f[i-<span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<ul>
+<li><p>初始化： 双端队列 deque，结果列表 res，数组长度 n；</p>
+</li>
+<li><p>滑动窗口： 左边界范围i∈[1−k,n+1−k] ，右边界范围 j∈[0,n−1] ；</p>
+<p>​    若 i&gt;0且 队首元素 deque[0]= 被删除元素 nums[i−1];则队首元素出队;</p>
+<p>​    删除 deque内所有 &lt;nums[j]的元素，以保持 deque递减；</p>
+<p>​    将 nums[j]添加至 deque尾部；</p>
+<p>​    若已形成窗口（即 i≥0）：将窗口最大值（即队首元素 deque[0]）添加至列表 res。</p>
+</li>
+<li><p>返回值： 返回结果列表 res。</p>
+</li>
+</ul>
+<h3 id="Java源码"><a href="#Java源码" class="headerlink" title="Java源码"></a>Java源码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        Deque&lt;Integer&gt; deque = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len - k + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!deque.isEmpty() &amp;&amp; deque.peekLast() &lt; nums[i]) &#123;</span><br><span class="line">                deque.removeLast();</span><br><span class="line">            &#125;</span><br><span class="line">            deque.addLast(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        res[<span class="number">0</span>] = deque.peekFirst();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(deque.peekFirst() == nums[i - k])</span><br><span class="line">                deque.removeFirst();</span><br><span class="line">            <span class="keyword">while</span>(!deque.isEmpty() &amp;&amp; deque.peekLast() &lt; nums[i])</span><br><span class="line">                deque.removeLast();</span><br><span class="line">            deque.addLast(nums[i]);</span><br><span class="line">            res[i - k + <span class="number">1</span>] = deque.peekFirst();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -274,14 +276,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/09/05/Java/Java%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="prev" title="Java 字符串">
-                  <i class="fa fa-chevron-left"></i> Java 字符串
+                <a href="/2020/09/10/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/" rel="prev" title="单词搜索">
+                  <i class="fa fa-chevron-left"></i> 单词搜索
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/09/10/%E7%AE%97%E6%B3%95%E9%A2%98/%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2/" rel="next" title="单词搜索">
-                  单词搜索 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
